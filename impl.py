@@ -13,7 +13,7 @@ from rdflib.plugins.stores.sparqlstore import SPARQLUpdateStore
 from typing import List, Union, Optional
 
 BLAZEGRAPH_ENDPOINT = 'http://127.0.0.1:9999/blazegraph/sparql'
-CSV_FILEPATH = '/Users/benkollmar/Desktop/meta.csv'
+CSV_FILEPATH = 'data/meta.csv'
 
 # REMEMBER: before running this code, please run the Blazegraph instance!
 # 
@@ -252,7 +252,7 @@ class ProcessDataUploadHandler(UploadHandler):  # Ekaterina
         super().__init__
 
 
-    file_path = "/Users/benkollmar/Desktop/process (2).json"
+    file_path = "data/process.json"
 
     try:
         with open(file_path) as json_file:
@@ -440,7 +440,7 @@ class MetadataUploadHandler(UploadHandler):  # Ekaterina
     # the URLs of all the resources created from the data
     base_url = "https://github.com/katyakrsn/ds24project/"
 
-    file_path_csv = "/Users/benkollmar/Desktop/meta.csv"
+    file_path_csv = "data/meta.csv"
     heritage = read_csv(
         file_path_csv,
         keep_default_na=False,  # Prevent pandas from treating certain values as NaN
@@ -1722,7 +1722,6 @@ class AdvancedMashup(BasicMashup):
     def __init__(self, metadataQuery=None, processQuery=None):
         super().__init__(metadataQuery, processQuery)
         
-    # @katya this function does not work correctly
     def getActivitiesOnObjectsAuthoredBy(
         self, author_id: str
     ) -> list[Activity]:  # Rubens
@@ -1738,7 +1737,7 @@ class AdvancedMashup(BasicMashup):
         # print(all_activities)
 
         # Convert object_id column to string (if not already)
-        # @katya this seems to return an empty dataframe
+
         all_activities["object_id"] = all_activities["object_id"].astype(str)
         selected_rows = all_activities[
             all_activities["object_id"].isin(related_ids_str)
