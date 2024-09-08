@@ -212,7 +212,7 @@ class Handler(object):  # Ekaterina
 
     def setDbPathOrUrl(self, pathOrUrl: str) -> bool:
         self.dbPathOrUrl = pathOrUrl
-        return True  # Indicate that the value was successfully set
+        return self.dbPathOrUrl == pathOrUrl
 
 
 class UploadHandler(Handler):  # Ekaterina
